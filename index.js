@@ -12,7 +12,7 @@ app.listen(port,()=>{
     console.log("server initiated and running at",port)
 })
 app.use(express.json())
-app.use(cors({origin:"https://it-companies-frontend.vercel.app/",credentials:true}))
+app.use(cors())
 app.use('/company',companyroutes)
 app.use("/public", express.static(path.join(__dirname, "public")));
 
