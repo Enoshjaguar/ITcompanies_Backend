@@ -12,14 +12,13 @@ app.listen(port,()=>{
     console.log("server initiated and running at",port)
 })
 app.use(express.json())
-app.use(cors())
+app.use(cors({origin:"https://it-companies-frontend.vercel.app/",credentials:true}))
 app.use('/company',companyroutes)
 app.use("/public", express.static(path.join(__dirname, "public")));
 
-mongoose.connect(mongourl)
-    .then(()=>{
-        console.log("database connected successfullly")
-    })
-    .catch((err)=>{
-        console.log("failed to connect to database",err)
-    })
+mongoose.connect(process.env.MONGO_URI, { 
+    useNewUrlParser: true, 
+    useUnifiedTopology: true 
+})
+.then(() => console.log("MongoDB connected"))
+.catch(err => console.error("MongoDB connection error:", err));
