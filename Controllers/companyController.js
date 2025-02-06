@@ -1,6 +1,7 @@
 
 const company = require('../Models/AddCompany')
 const Company = require('../Models/AddCompany')
+const 
 const addnewcompany = async(req,res)=>{
     const {companyname,category,headquarters,ceo} = req.body
     try {
@@ -21,24 +22,21 @@ const addnewcompany = async(req,res)=>{
         
     }
 }
-
-const allcompanies = async(req,res)=>{
-    try{
-        const allcompanies = await Company.find()
-        const formattedcompanies = allcompanies.map(company=>({
+const allcompanies = async (req, res) => {
+    try {
+        const allcompanies = await Company.find();
+        
+        const formattedcompanies = allcompanies.map(company => ({
             ...company._doc,
-            file:`http://localhost:3004/public/images/${company.file}`
-        }))
-      
-       
-        console.log("all companies fetched suuccesfully",{allcompanies:formattedcompanies})
-        return res.status(200).json({allcompanies:formattedcompanies})
-    }
-    catch(err){
-        console.error(err)
-        return res.status(500).json({message:"internal server error"})
+            file: company.file ? `https://itcompanies-backend.onrender.com/public/images/${company.file}` : null
+        }));
 
+        console.log("All companies fetched successfully", { allcompanies: formattedcompanies });
+        return res.status(200).json({ allcompanies: formattedcompanies });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: "Internal server error" });
     }
-}
+};
 
 module.exports = {addnewcompany,allcompanies}
