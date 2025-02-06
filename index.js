@@ -12,7 +12,14 @@ app.listen(port,()=>{
     console.log("server initiated and running at",port)
 })
 app.use(express.json())
-app.use(cors())
+
+
+app.use(cors({
+  origin: "https://your-frontend-app.vercel.app", // Allow requests from your Vercel frontend
+  methods: ["GET", "POST"],
+  credentials: true
+}));
+
 app.use('/company',companyroutes)
 app.use("/public", express.static(path.join(__dirname, "public")));
 

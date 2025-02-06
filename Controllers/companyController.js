@@ -1,7 +1,7 @@
 
 const company = require('../Models/AddCompany')
 const Company = require('../Models/AddCompany')
-const 
+
 const addnewcompany = async(req,res)=>{
     const {companyname,category,headquarters,ceo} = req.body
     try {
