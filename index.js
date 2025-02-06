@@ -15,7 +15,7 @@ app.use(express.json())
 
 
 app.use(cors({
-  origin: "https://your-frontend-app.vercel.app", // Allow requests from your Vercel frontend
+  origin: "https://it-companies-frontend.vercel.app/", // Allow requests from your Vercel frontend
   methods: ["GET", "POST"],
   credentials: true
 }));
